@@ -18,9 +18,10 @@ public class Reunion extends Evenement{
         //"Réunion : Event de test à Ici avec Toi, Lui"
         String participants = "";
         for(Personne p : participantList){
-            participants = participants + p.getPrenom() + ",";
+            participants = participants + p.getPrenom() + ", ";
         }
-        return "Réunion : " + this.getTitreEvenement() + " à " + this.getLieuReunion() + " avec " + participants;
+        participants = participants.substring(0, participants.length() - 2);
+        return "Réunion : " + this.getTitreEvenement().getTitreEvenement() + " à " + this.getLieuReunion().getLieuReunion() + " avec " + participants;
     }
 
     public DureeEvenement getDureeEvenement() {

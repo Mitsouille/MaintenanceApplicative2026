@@ -1,37 +1,19 @@
 package Evenements;
 
+import java.time.LocalDate;
+
 public class DateEvenement {
-    private int annee;
-    private int mois;
-    private int jour;
+    private LocalDate LocalDate;
 
     public DateEvenement(int annee, int mois, int jour){
-        this.annee = annee;
-        this.mois = mois;
-        this.jour = jour;
+        this.LocalDate = LocalDate.of(annee,mois,jour);
     }
 
-    public int getAnnee() {
-        return annee;
+    public LocalDate getLocalDate() {
+        return LocalDate;
     }
 
-    public void setAnnee(int annee) {
-        this.annee = annee;
-    }
-
-    public int getMois() {
-        return mois;
-    }
-
-    public void setMois(int mois) {
-        this.mois = mois;
-    }
-
-    public int getJour() {
-        return jour;
-    }
-
-    public void setJour(int jour) {
-        this.jour = jour;
+    public void setLocalDate(LocalDate localDate) {
+        this.LocalDate = LocalDate;
     }
 }

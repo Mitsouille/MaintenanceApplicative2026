@@ -1,27 +1,24 @@
 package Evenements;
 
+import java.time.LocalTime;
+
 public class HeureDebut {
-    private int heure;
-    private int minute;
+    private LocalTime localTime;
 
     public HeureDebut(int heure, int minute) {
-        this.heure = heure;
-        this.minute = minute;
+        this.localTime = LocalTime.of(heure, minute, 0);
     }
 
-    public int getHeure() {
-        return heure;
+    public LocalTime getLocalTime() {
+        return localTime;
     }
 
-    public void setHeure(int heure) {
-        this.heure = heure;
+    @Override
+    public String toString() {
+        return this.localTime.getHour() + ":" + this.localTime.getMinute();
     }
 
-    public int getMinute() {
-        return minute;
-    }
-
-    public void setMinute(int minute) {
-        this.minute = minute;
+    public void setLocalTime(LocalTime localTime) {
+        this.localTime = localTime;
     }
 }

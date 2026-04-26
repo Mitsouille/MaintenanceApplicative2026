@@ -1,5 +1,6 @@
 import Evenements.DateEvenement;
 import Evenements.DureeEvenement;
+import Evenements.Evenement;
 import Evenements.Frequence;
 import Evenements.HeureDebut;
 import Evenements.LieuReunion;
@@ -260,13 +261,13 @@ public class Main {
         }
     }
 
-    private static void afficherListe(List<Event> evenements) {
+    private static void afficherListe(List<Evenement> evenements) {
         if (evenements.isEmpty()) {
             System.out.println("Aucun événement trouvé pour cette période.");
         } else {
             System.out.println("Événements trouvés : ");
-            for (Event e : evenements) {
-                System.out.println("- " + e.description());
+            for (Evenement e : evenements) {
+                System.out.println("- " + e.getDescription());
             }
         }
     }

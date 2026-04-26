@@ -16,10 +16,9 @@ import java.util.List;
 
 public class CalendarManager {
     public List<Evenement> evenements;
-    public List<Event> events;
 
     public CalendarManager() {
-        this.events = new ArrayList<>();
+        this.evenements = new ArrayList<>();
     }
 
     public void ajouterReunion(DureeEvenement dureeEvenement, TitreEvenement titreEvenement, HeureDebut heureDebut, DateEvenement dateEvenement, Personne proprietaire, LieuReunion lieuReunion, List<Personne> participants){
@@ -34,42 +33,29 @@ public class CalendarManager {
         evenements.add(new RDVPersonnel(dureeEvenement, titreEvenement, heureDebut, proprietaire, dateEvenement));
     }
 
-    public List<Event> eventsDansPeriode(LocalDateTime debut, LocalDateTime fin) {
-        List<Event> result = new ArrayList<>();
-        for (Event e : events) {
-            if (e.type.equals("PERIODIQUE")) {
-                LocalDateTime temp = e.dateDebut;
-                while (temp.isBefore(fin)) {
-                    if (!temp.isBefore(debut)) {
-                        result.add(e);
-                        break;
-                    }
-                    temp = temp.plusDays(e.frequenceJours);
-                }
-            } else if (!e.dateDebut.isBefore(debut) && !e.dateDebut.isAfter(fin)) {
-                result.add(e);
+    public List<Evenement> eventsDansPeriode(LocalDateTime debut, LocalDateTime fin) {
+        List<Evenement> result = new ArrayList<>();
+
+        for (Evenement e : evenements) {
+            if(e.estEntre(debut, fin)){
+            result.add(e);
             }
         }
         return result;
     }
 
-    public boolean conflit(Event e1, Event e2) {
-        LocalDateTime fin1 = e1.dateDebut.plusMinutes(e1.dureeMinutes);
-        LocalDateTime fin2 = e2.dateDebut.plusMinutes(e2.dureeMinutes);
+    public boolean conflit(Evenement e1, Evenement e2) {
+        LocalDateTime debutE1 = LocalDateTime.of(e1.getDateEvenement().getLocalDate(), e1.getHeureDebut().getLocalTime());
+        LocalDateTime debutE2 = LocalDateTime.of(e2.getDateEvenement().getLocalDate(), e2.getHeureDebut().getLocalTime());
 
-        if (e1.type.equals("PERIODIQUE") || e2.type.equals("PERIODIQUE")) {
-            return false; // Simplification abusive
-        }
-
-        if (e1.dateDebut.isBefore(fin2) && fin1.isAfter(e2.dateDebut)) {
-            return true;
-        }
-        return false;
+        LocalDateTime finE1 = LocalDateTime.of(e1.getDateEvenement().getLocalDate(), e1.getHeureDebut().getLocalTime().plusMinutes(e1.getDuree()));
+        LocalDateTime finE2 = LocalDateTime.of(e2.getDateEvenement().getLocalDate(), e2.getHeureDebut().getLocalTime()).plusMinutes(e2.getDuree());
+        return e2.estEntre(debutE1, finE1) || e1.estEntre(debutE2, finE2);
     }
 
-    public void afficherEvenements() {
-        for (Event e : events) {
-            System.out.println(e.description());
+    public void afficherEvenements(){
+        for (Evenement e : evenements) {
+            System.out.println(e.getDescription());
         }
     }
 }

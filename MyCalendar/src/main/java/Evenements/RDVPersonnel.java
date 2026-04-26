@@ -13,7 +13,7 @@ public class RDVPersonnel extends Evenement{
     @Override
     public String getDescription() {
         //RDV : Event de test à 2026-04-26T16:45
-        return "RDV : " + this.getTitreEvenement() + " à " + this.getDateEvenement() + "T" + this.getHeureDebut().getHeure() + ":" + this.getHeureDebut().getMinute();
+        return "RDV : " + this.getTitreEvenement().getTitreEvenement() + " à " + this.getDateEvenement().getLocalDate() + "T" + this.getHeureDebut();
     }
 
     public DureeEvenement getDureeEvenement() {
