@@ -103,6 +103,7 @@ public class Main {
                 System.out.println("3 - Ajouter une réunion");
                 System.out.println("4 - Ajouter un évènement périodique");
                 System.out.println("5 - Se déconnecter");
+                System.out.println("6 - Supprimer un événement");
                 System.out.print("Votre choix : ");
 
                 String choix = scanner.nextLine();
@@ -249,6 +250,13 @@ public class Main {
 
                         System.out.println("Événement ajouté.");
                         break;
+                    case "6":
+                        afficherListe(calendar.evenements);
+                        System.out.println("Entrez l'id de l'événement à supprimer");
+                        int idSuppression = Integer.parseInt(scanner.nextLine());
+                        calendar.supprimerEvent(idSuppression);
+                        System.out.println("Evenement numéro " + idSuppression + " supprimé");
+                        break;
 
                     default:
                         System.out.println("Déconnexion ! Voulez-vous continuer ? (O/N)");
@@ -266,7 +274,7 @@ public class Main {
         } else {
             System.out.println("Événements trouvés : ");
             for (Evenement e : evenements) {
-                System.out.println("- " + e.getDescription());
+                System.out.println(e.getEventId() + "- " + e.getDescription());
             }
         }
     }
