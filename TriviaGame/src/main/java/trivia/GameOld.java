@@ -43,7 +43,7 @@ public class GameOld implements IGame {
       players.add(playerName);
 
       System.out.println(playerName + " was added");
-      System.out.println("They are player number " + players.size());
+      System.out.println("They are players number " + players.size());
       return true;
    }
 
@@ -52,7 +52,7 @@ public class GameOld implements IGame {
    }
 
    public void roll(int roll) {
-      System.out.println(players.get(currentPlayer) + " is the current player");
+      System.out.println(players.get(currentPlayer) + " is the current players");
       System.out.println("They have rolled a " + roll);
 
       if (inPenaltyBox[currentPlayer]) {
@@ -94,7 +94,7 @@ public class GameOld implements IGame {
          System.out.println(scienceQuestions.remove(0));
       if (currentCategory() == "Sports")
          System.out.println(sportsQuestions.remove(0));
-      if (currentCategory() == "Rock")
+      if (currentCategory() == "ROCK")
          System.out.println(rockQuestions.remove(0));
    }
 
