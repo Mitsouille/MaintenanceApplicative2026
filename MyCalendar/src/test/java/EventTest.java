@@ -1,8 +1,20 @@
 
+import Evenements.DateEvenement;
+import Evenements.DureeEvenement;
+import Evenements.Evenement;
+import Evenements.Frequence;
+import Evenements.HeureDebut;
+import Evenements.LieuReunion;
+import Evenements.Participant;
+import Evenements.Periodique;
+import Evenements.RDVPersonnel;
+import Evenements.Reunion;
+import Evenements.TitreEvenement;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,6 +36,51 @@ public class EventTest {
         assertEquals("", calendarManager.events.get(0).lieu);
         assertEquals("", calendarManager.events.get(0).participants);
         assertEquals(0, calendarManager.events.get(0).frequenceJours);
+    }
+
+    @Test
+    void creationRDVPersonnel_Test_Refacto(){
+        Evenement evenement = new RDVPersonnel(new DureeEvenement(5), new TitreEvenement("RDV de goat"), new HeureDebut(15,15), new DateEvenement(2026,5,2));
+        assertEquals(5, evenement.getDureeEvenement().getDuree());
+        assertEquals("RDV de goat", evenement.getTitreEvenement().getTitreEvenement());
+        assertEquals(15, evenement.getHeureDebut().getHeure());
+        assertEquals(15, evenement.getHeureDebut().getMinute());
+        assertEquals(2026, evenement.getDateEvenement().getAnnee());
+        assertEquals(5, evenement.getDateEvenement().getMois());
+        assertEquals(2, evenement.getDateEvenement().getJour());
+    }
+
+    @Test
+    void creationReunion_Test_Refacto(){
+        Reunion evenement = new Reunion(new DureeEvenement(5), new TitreEvenement("RDV de goat"), new HeureDebut(15,15), new DateEvenement(2026,5,2), new LieuReunion("Ici"), Arrays.asList(
+                new Participant("Patrick"),
+                new Participant("Noah")
+        ));
+        assertEquals(5, evenement.getDureeEvenement().getDuree());
+        assertEquals("RDV de goat", evenement.getTitreEvenement().getTitreEvenement());
+        assertEquals(15, evenement.getHeureDebut().getHeure());
+        assertEquals(15, evenement.getHeureDebut().getMinute());
+        assertEquals(2026, evenement.getDateEvenement().getAnnee());
+        assertEquals(5, evenement.getDateEvenement().getMois());
+        assertEquals(2, evenement.getDateEvenement().getJour());
+        assertEquals("Ici", evenement.getLieuReunion().getLieuReunion());
+        assertEquals(2, evenement.getParticipantList().size());
+        assertEquals("Patrick", evenement.getParticipantList().get(0).getPrenom());
+        assertEquals("Noah", evenement.getParticipantList().get(1).getPrenom());
+    }
+
+    @Test
+    void creationPeriodique_Test_Refacto(){
+        Periodique evenement = new Periodique(new DureeEvenement(5), new TitreEvenement("RDV de goat"), new HeureDebut(15,15), new DateEvenement(2026,5,2), new Frequence(5, "jours"));
+        assertEquals(5, evenement.getDureeEvenement().getDuree());
+        assertEquals("RDV de goat", evenement.getTitreEvenement().getTitreEvenement());
+        assertEquals(15, evenement.getHeureDebut().getHeure());
+        assertEquals(15, evenement.getHeureDebut().getMinute());
+        assertEquals(2026, evenement.getDateEvenement().getAnnee());
+        assertEquals(5, evenement.getDateEvenement().getMois());
+        assertEquals(2, evenement.getDateEvenement().getJour());
+        assertEquals(5, evenement.getFrequence().getFrequence());
+        assertEquals("jours", evenement.getFrequence().getTypeFrequence());
     }
 
     @Test
