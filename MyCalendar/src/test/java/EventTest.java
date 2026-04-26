@@ -163,4 +163,47 @@ public class EventTest {
         assertEquals(4, calendarManager.evenements.size());
         assertEquals(eventPeriode, calendarManager.eventsDansPeriode(LocalDateTime.of(2026, 4, 27, 16, 45), LocalDateTime.of(2026, 7, 27, 16, 45)));
     }
+
+    @Test
+    void obtenirListeEvenementPeriodique_Test() {
+        CalendarManager calendarManager = new CalendarManager();
+        List<Evenement> eventPeriode = new ArrayList<Evenement>();
+        calendarManager.ajouterPeriodique(new TitreEvenement("Event de test"),
+                new HeureDebut(16, 46), new DateEvenement(2026,4,27),
+                new Personne("Laeticia"), new Frequence(3));
+        calendarManager.ajouterPeriodique(new TitreEvenement("Event de avant"),
+                new HeureDebut(16, 46), new DateEvenement(2026,1,27),
+                new Personne("Laeticia"), new Frequence(3));
+        calendarManager.ajouterPeriodique(new TitreEvenement("Event de test après"),
+                new HeureDebut(16, 46), new DateEvenement(2026,9,27),
+                new Personne("Laeticia"), new Frequence(3));
+        eventPeriode.add(calendarManager.evenements.get(0));
+        eventPeriode.add(calendarManager.evenements.get(1));
+        assertEquals(3, calendarManager.evenements.size());
+        assertEquals(eventPeriode, calendarManager.eventsDansPeriode(LocalDateTime.of(2026, 4, 27, 16, 45), LocalDateTime.of(2026, 7, 27, 16, 45)));
+    }
+
+    @Test
+    void supprimerEvenement(){
+        CalendarManager calendarManager = new CalendarManager();
+        List<Evenement> eventPeriode = new ArrayList<Evenement>();
+        calendarManager.ajouterPeriodique(new TitreEvenement("Event de test"),
+                new HeureDebut(16, 46), new DateEvenement(2026,4,27),
+                new Personne("Laeticia"), new Frequence(3));
+        calendarManager.ajouterPeriodique(new TitreEvenement("Event de avant"),
+                new HeureDebut(16, 46), new DateEvenement(2026,1,27),
+                new Personne("Laeticia"), new Frequence(3));
+        calendarManager.ajouterPeriodique(new TitreEvenement("Event de test après"),
+                new HeureDebut(16, 46), new DateEvenement(2026,9,27),
+                new Personne("Laeticia"), new Frequence(3));
+        eventPeriode.add(calendarManager.evenements.get(0));
+        eventPeriode.add(calendarManager.evenements.get(1));
+        assertEquals(3, calendarManager.evenements.size());
+        calendarManager.supprimerEvent(2);
+        assertEquals(2, calendarManager.evenements.size());
+        assertEquals(0, calendarManager.evenements.get(0).getEventId());
+        assertEquals(1, calendarManager.evenements.get(1).getEventId());
+
+
+    }
 }

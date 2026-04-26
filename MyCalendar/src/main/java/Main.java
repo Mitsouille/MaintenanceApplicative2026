@@ -209,9 +209,8 @@ public class Main {
                         int duree2 = Integer.parseInt(scanner.nextLine());
                         System.out.println("Lieu :");
                         String lieu = scanner.nextLine();
-                        
-                        List<Personne> participants = Arrays.asList(new Personne(utilisateur));
-                        
+
+                        ArrayList<Personne> participants = new ArrayList<>(Arrays.asList(new Personne(utilisateur)));
                         boolean encore = true;
                         System.out.println("Ajouter un participant ? (oui / non)");
                         while (scanner.nextLine().equals("oui"))

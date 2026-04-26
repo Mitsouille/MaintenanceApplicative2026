@@ -9,6 +9,9 @@ public abstract class Evenement {
     private Personne proprietaire;
     private int duree;
 
+    private static int eventIdSequence = 0;
+    private int eventId;
+
 
     public Evenement(TitreEvenement titreEvenement, HeureDebut heureDebut, DateEvenement dateEvenement, Personne proprietaire){
         this.titreEvenement = titreEvenement;
@@ -16,6 +19,12 @@ public abstract class Evenement {
         this.dateEvenement = dateEvenement;
         this.proprietaire = proprietaire;
         this.duree = 0;
+        this.eventId = eventIdSequence;
+        eventIdSequence++;
+    }
+
+    public int getEventId() {
+        return eventId;
     }
 
     public int getDuree(){
@@ -60,6 +69,4 @@ public abstract class Evenement {
     public void setProprietaire(Personne proprietaire) {
         this.proprietaire = proprietaire;
     }
-
-
 }

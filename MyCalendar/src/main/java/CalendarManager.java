@@ -58,4 +58,10 @@ public class CalendarManager {
             System.out.println(e.getDescription());
         }
     }
+
+    public void supprimerEvent(int eventId){
+        Evenement event = this.evenements.stream().filter(e -> e.getEventId() == eventId).findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+        this.evenements.remove(event);
+    }
 }
