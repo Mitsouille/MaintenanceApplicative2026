@@ -3,29 +3,39 @@ package Evenements;
 import java.util.List;
 
 public class Reunion extends Evenement{
-    private List<Participant> participantList;
+    private List<Personne> participantList;
     private LieuReunion lieuReunion;
-    public Reunion(DureeEvenement dureeEvenement, TitreEvenement titreEvenement, HeureDebut heureDebut, DateEvenement dateEvenement, LieuReunion lieuReunion, List<Participant> participants) {
-        super(dureeEvenement, titreEvenement, heureDebut, dateEvenement);
+    private DureeEvenement dureeEvenement;
+    public Reunion(DureeEvenement dureeEvenement, TitreEvenement titreEvenement, HeureDebut heureDebut, DateEvenement dateEvenement, Personne proprietaire, LieuReunion lieuReunion, List<Personne> participants) {
+        super(titreEvenement, heureDebut, dateEvenement, proprietaire);
         this.lieuReunion = lieuReunion;
         this.participantList = participants;
+        this.dureeEvenement = dureeEvenement;
     }
 
     @Override
     public String getDescription() {
         //"Réunion : Event de test à Ici avec Toi, Lui"
         String participants = "";
-        for(Participant p : participantList){
+        for(Personne p : participantList){
             participants = participants + p.getPrenom() + ",";
         }
         return "Réunion : " + this.getTitreEvenement() + " à " + this.getLieuReunion() + " avec " + participants;
     }
 
-    public List<Participant> getParticipantList() {
+    public DureeEvenement getDureeEvenement() {
+        return dureeEvenement;
+    }
+
+    public void setDureeEvenement(DureeEvenement dureeEvenement) {
+        this.dureeEvenement = dureeEvenement;
+    }
+
+    public List<Personne> getParticipantList() {
         return participantList;
     }
 
-    public void setParticipantList(List<Participant> participantList) {
+    public void setParticipantList(List<Personne> participantList) {
         this.participantList = participantList;
     }
 

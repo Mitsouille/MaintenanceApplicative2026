@@ -1,9 +1,9 @@
 package Evenements;
 
-public class Participant {
+public class Personne {
     private String prenom;
 
-    public Participant(String prenom){
+    public Personne(String prenom){
         this.prenom = prenom;
     }
 

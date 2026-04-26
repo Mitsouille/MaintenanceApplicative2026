@@ -1,18 +1,37 @@
+import Evenements.DateEvenement;
+import Evenements.DureeEvenement;
+import Evenements.Evenement;
+import Evenements.Frequence;
+import Evenements.HeureDebut;
+import Evenements.LieuReunion;
+import Evenements.Periodique;
+import Evenements.Personne;
+import Evenements.RDVPersonnel;
+import Evenements.Reunion;
+import Evenements.TitreEvenement;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CalendarManager {
+    public List<Evenement> evenements;
     public List<Event> events;
 
     public CalendarManager() {
         this.events = new ArrayList<>();
     }
 
-    public void ajouterEvent(String type, String title, String proprietaire, LocalDateTime dateDebut, int dureeMinutes,
-                             String lieu, String participants, int frequenceJours) {
-        Event e = new Event(type, title, proprietaire, dateDebut, dureeMinutes, lieu, participants, frequenceJours);
-        events.add(e);
+    public void ajouterReunion(DureeEvenement dureeEvenement, TitreEvenement titreEvenement, HeureDebut heureDebut, DateEvenement dateEvenement, Personne proprietaire, LieuReunion lieuReunion, List<Personne> participants){
+        evenements.add(new Reunion(dureeEvenement, titreEvenement, heureDebut, dateEvenement, proprietaire, lieuReunion, participants));
+    }
+
+    public void ajouterPeriodique(TitreEvenement titreEvenement, HeureDebut heureDebut, DateEvenement dateEvenement, Personne proprietaire, Frequence frequence){
+        evenements.add(new Periodique(titreEvenement, heureDebut, dateEvenement, proprietaire, frequence));
+    }
+
+    public void ajouterRdvPerso(TitreEvenement titreEvenement, DureeEvenement dureeEvenement, HeureDebut heureDebut, Personne proprietaire, DateEvenement dateEvenement){
+        evenements.add(new RDVPersonnel(dureeEvenement, titreEvenement, heureDebut, proprietaire, dateEvenement));
     }
 
     public List<Event> eventsDansPeriode(LocalDateTime debut, LocalDateTime fin) {

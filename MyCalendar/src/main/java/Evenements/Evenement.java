@@ -1,29 +1,20 @@
 package Evenements;
 
 public abstract class Evenement {
-    private DureeEvenement dureeEvenement;
     private TitreEvenement titreEvenement;
     private HeureDebut heureDebut;
     private DateEvenement dateEvenement;
+    private Personne proprietaire;
 
 
-    public Evenement(DureeEvenement dureeEvenement, TitreEvenement titreEvenement, HeureDebut heureDebut, DateEvenement dateEvenement){
-        this.dureeEvenement = dureeEvenement;
+    public Evenement(TitreEvenement titreEvenement, HeureDebut heureDebut, DateEvenement dateEvenement, Personne proprietaire){
         this.titreEvenement = titreEvenement;
         this.heureDebut = heureDebut;
         this.dateEvenement = dateEvenement;
+        this.proprietaire = proprietaire;
     }
 
     public abstract String getDescription();
-
-
-    public DureeEvenement getDureeEvenement() {
-        return dureeEvenement;
-    }
-
-    public void setDureeEvenement(DureeEvenement dureeEvenement) {
-        this.dureeEvenement = dureeEvenement;
-    }
 
     public TitreEvenement getTitreEvenement() {
         return titreEvenement;
@@ -47,5 +38,13 @@ public abstract class Evenement {
 
     public void setDateEvenement(DateEvenement dateEvenement) {
         this.dateEvenement = dateEvenement;
+    }
+
+    public Personne getProprietaire() {
+        return proprietaire;
+    }
+
+    public void setProprietaire(Personne proprietaire) {
+        this.proprietaire = proprietaire;
     }
 }

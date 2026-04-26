@@ -3,8 +3,8 @@ package Evenements;
 public class Periodique extends Evenement{
 
     private Frequence frequence;
-    public Periodique(DureeEvenement dureeEvenement, TitreEvenement titreEvenement, HeureDebut heureDebut, DateEvenement dateEvenement, Frequence frequence){
-        super(dureeEvenement, titreEvenement, heureDebut, dateEvenement);
+    public Periodique(TitreEvenement titreEvenement, HeureDebut heureDebut, DateEvenement dateEvenement, Personne proprietaire, Frequence frequence){
+        super(titreEvenement, heureDebut, dateEvenement, proprietaire);
         this.frequence = frequence;
     }
 
@@ -18,6 +18,7 @@ public class Periodique extends Evenement{
 
     @Override
     public String getDescription() {
-        return "";
+        //Événement périodique : Event de test tous les 3 jours
+        return "Événement périodique : " + this.getDescription() + " tous les " + this.getFrequence().getFrequence() + " " + this.getFrequence();
     }
 }

@@ -2,11 +2,9 @@ package Evenements;
 
 public class Frequence {
     private int frequence;
-    private String typeFrequence;
 
-    public Frequence(int frequence, String typeFrequence) {
+    public Frequence(int frequence) {
         this.frequence = frequence;
-        this.typeFrequence = typeFrequence;
     }
 
     public int getFrequence() {
@@ -15,13 +13,5 @@ public class Frequence {
 
     public void setFrequence(int frequence) {
         this.frequence = frequence;
-    }
-
-    public String getTypeFrequence() {
-        return typeFrequence;
-    }
-
-    public void setTypeFrequence(String typeFrequence) {
-        this.typeFrequence = typeFrequence;
     }
 }
